@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Petite démo de QRCode</title>
+
+<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="qrcode.js"></script>
+<script type="text/javascript" src="qrcanvas.js"></script>
+
+</head>
+<body>
+
+<h1>Un petit message</h1>
+<div id="qr_msg">
+</div>
+
+<h1>L'URL de mon site</h1>
+<div id="qr_url">
+</div>
+
+<script type="text/javascript">
+//var d=new Date();
+//append_qrcode(9,"qr_msg","Thanks for generating this on "+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+' '+d.getHours()+':'+d.getMinutes()+':'+d.getSeconds()+"\nI hope you enjoyed it!\n--\nCipher Brain SPRL");
+//
+//append_qrcode(4,"qr_url","http://jetienne.com");
+</script>
+
+<hr />
+Note: pour lire ceci depuis Android, je recommande l'application <tt>Bar Code Scanner</tt> de ZXing Team.
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.qrcode.js"></script>
+
+<div id="output"></div>
+<script>
+jQuery(function(){
+	jQuery('#output').qrcode({
+		text	: "http://jetienne.com"
+	})
+})
+</script>
+
+</body>
+</html>
