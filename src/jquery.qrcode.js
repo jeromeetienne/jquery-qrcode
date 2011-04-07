@@ -1,6 +1,8 @@
 (function( $ ){
 	$.fn.qrcode = function(options) {
 
+		// <% console.log(""); %>
+
 		// if options is string, 
 		if( typeof options === 'string' ){
 			options	= { text: options };
