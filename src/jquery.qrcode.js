@@ -1,6 +1,5 @@
 (function( $ ){
 	$.fn.qrcode = function(options) {
-
 		// if options is string, 
 		if( typeof options === 'string' ){
 			options	= { text: options };
@@ -19,16 +18,15 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
-
 			// create canvas element
 			var canvas	= document.createElement('canvas');
 			canvas.width	= options.width;
 			canvas.height	= options.height;
 			var ctx		= canvas.getContext('2d');
-			
-			var tileW	= options.width / qrcode.getModuleCount();
+			// compute tileW/tileH based on options.width/options.height
+			var tileW	= options.width  / qrcode.getModuleCount();
 			var tileH	= options.height / qrcode.getModuleCount();
-	
+			// draw in the canvas
 			for( var row = 0; row < qrcode.getModuleCount(); row++ ){
 				for( var col = 0; col < qrcode.getModuleCount(); col++ ){
 					ctx.fillStyle = qrcode.isDark(row, col) ? "#000000" : "#ffffff";

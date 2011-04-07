@@ -2,7 +2,9 @@
 
 With jQuery.qrcode.js you can easily add qrcode to your webpages.
 It is standalone, no external services which go on and off, or add latency
-while loading.
+while loading. It is based on a <a href='http://www.d-project.com/qrcode/index.html'>library</a>
+which build qrcode in various language. jQuery.qrcode.js wraps it to make it easy
+to include in your own code.
 
 Show, dont tell, here is a <a href='examples/demo.html'>demo</a>
 
@@ -21,7 +23,7 @@ Then you add the *qrcode* in this container by
 
     jQuery('#qrcode').qrcode("this plugin is great");
 
-This is it.
+This is it. see it <a href='examples/basic.html'>live</a>.
 
 ## Conclusion
 
