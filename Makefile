@@ -31,5 +31,6 @@ deployGhPage:
 	(cd /tmp/$(PROJECT_NAME)GhPages && rm .git/index)
 	(cd /tmp/$(PROJECT_NAME)GhPages && git clean -fdx)
 	cp -a examples src Makefile *.* /tmp/$(PROJECT_NAME)GhPages
-	(cd /tmp/$(PROJECT_NAME)GhPages && git add . && git commit -a -m "Another deployement" && git push origin gh-pages)
+	(cd /tmp/$(PROJECT_NAME)GhPages && git add . && git commit -a -m "Another deployement" || true )
+	(cd /tmp/$(PROJECT_NAME)GhPages && git add . && git push origin gh-pages)
 	#rm -rf /tmp/$(PROJECT_NAME)GhPages
