@@ -6,7 +6,11 @@ all:
 build: minify homepage_build
 
 minify:
-	closurec --js src/jquery.qrcode.js --js_output_file jquery.qrcode.min.js
+	echo -n 			> /tmp/jquery.qrcode.tmp.js
+	head -2 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
+	cat src/qrcode.js		>> /tmp/jquery.qrcode.tmp.js
+	tail -n +3 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
+	closurec --js /tmp/jquery.qrcode.tmp.js --js_output_file jquery.qrcode.min.js
 
 homepage_build:
 	pandoc -A ~/.pandoc.header.html -s README.md -o index.html
