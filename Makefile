@@ -25,10 +25,11 @@ deploy:	build deployGhPage
 deployGhPage:
 	rm -rf /tmp/$(PROJECT_NAME)GhPages
 	(cd /tmp && git clone git@github.com:jeromeetienne/$(PROJECT_NAME).git $(PROJECT_NAME)GhPages)
-	(cd /tmp/$(PROJECT_NAME)GhPages && git push origin :gh-pages)
+	(cd /tmp/$(PROJECT_NAME)GhPages && git checkout gh-pages || true )
+	(cd /tmp/$(PROJECT_NAME)GhPages && git push origin :gh-pages || true )
 	(cd /tmp/$(PROJECT_NAME)GhPages && git symbolic-ref HEAD refs/heads/gh-pages)
 	(cd /tmp/$(PROJECT_NAME)GhPages && rm .git/index)
 	(cd /tmp/$(PROJECT_NAME)GhPages && git clean -fdx)
-	cp -a examples src Makefile *.*README.md /tmp/$(PROJECT_NAME)GhPages
+	cp -a examples src Makefile *.* /tmp/$(PROJECT_NAME)GhPages
 	(cd /tmp/$(PROJECT_NAME)GhPages && git add . && git commit -a -m "Another deployement" && git push origin gh-pages)
 	#rm -rf /tmp/$(PROJECT_NAME)GhPages
