@@ -4,7 +4,7 @@
 é *jquery plugin for a pure browser qrcode generation*.
 Isto permite a você adicionar qrcode facilmente a sua página web.
 Ele roda independente, fica menor que 4k após minify+gzip, sem imagens para download.
-It doesnt rely on external services which go on and off, or add latency while loading.
+Ele não depende de serviços externos que ficam indo e vindo, ou adiciona uma demora ao carregamento.
 É baseado em uma <a href='http://www.d-project.com/qrcode/index.html'>biblioteca</a>
 que cria qrcode em várias linguagens. <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> inclui
 isto para facilitar a inclusão no seu próprio código.
