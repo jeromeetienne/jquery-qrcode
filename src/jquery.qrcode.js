@@ -6,10 +6,11 @@
 		}
 
 		// set default values
+		// typeNumber < 1 for automatic calculation
 		options	= $.extend( {}, {
 			width		: 256,
 			height		: 256,
-			typeNumber	: 4,
+			typeNumber	: -1,
 			correctLevel	: QRErrorCorrectLevel.H
 		}, options);
 
