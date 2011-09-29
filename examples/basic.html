@@ -8,7 +8,11 @@
 
 <div id="qrcode"></div>
 <script>
-	jQuery('#qrcode').qrcode("this plugin is great");
+	//jQuery('#qrcode').qrcode("this plugin is great");
+	jQuery('#qrcode').qrcode({
+		render	: "table",
+		text	: "http://jetienne.com"
+	});	
 </script>
 
 </body>
