@@ -48,9 +48,6 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
-
-			var border_width = (options.width + options.height) / 20; // 10% of the average(width, height)
-      
 			
 			// create table element
 			var $table	= $('<table></table>')
@@ -58,20 +55,19 @@
 				.css("height", options.height+"px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
-				//.css("margin", border_width+"px")
 				.css('background-color', "#ffffff");
 		  
 			// compute tileS percentage
-			var tileW	= 100 / qrcode.getModuleCount();
-			var tileH	= 100 / qrcode.getModuleCount();
+			var tileW	= options.width / qrcode.getModuleCount();
+			var tileH	= options.height / qrcode.getModuleCount();
 
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
-				var $row = $('<tr></tr>').css('height', tileH+"%").appendTo($table);
+				var $row = $('<tr></tr>').css('height', tileH+"px").appendTo($table);
 				
 				for(var col = 0; col < qrcode.getModuleCount(); col++ ){
 					$('<td></td>')
-						.css('width', tileW+"%")
+						.css('width', tileW+"px")
 						.css('background-color', qrcode.isDark(row, col) ? "#000000" : "#ffffff")
 						.appendTo($row);
 				}	
