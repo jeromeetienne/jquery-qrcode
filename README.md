@@ -29,6 +29,7 @@ Then you add the *qrcode* in this container by
 This is it. see it <a href='examples/basic.html'>live</a>.
 
 You can set the height and width of the generated qrcode:
+
     jquery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
 
 
