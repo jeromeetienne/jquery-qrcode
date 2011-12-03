@@ -28,8 +28,8 @@
 			var ctx		= canvas.getContext('2d');
 
 			// compute tileW/tileH based on options.width/options.height
-			var tileW	= options.width  / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+			var tileW	= Math.floor(options.width  / qrcode.getModuleCount());
+			var tileH	= Math.floor(options.height / qrcode.getModuleCount());
 
 			// draw in the canvas
 			for( var row = 0; row < qrcode.getModuleCount(); row++ ){
