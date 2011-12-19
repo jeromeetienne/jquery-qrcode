@@ -12,13 +12,19 @@
 			width		: 256,
 			height		: 256,
 			typeNumber	: -1,
-			correctLevel	: QRErrorCorrectLevel.H
+			correctLevel	: QRErrorCorrectLevel.H,
+			isUnicode	: true
 		}, options);
 
 		var createCanvas	= function(){
 			// create the qrcode itself
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
-			qrcode.addData(options.text);
+			if (options.isUnicode) {
+				qrcode.addData(unescape("%EF%BB%BF"));
+				qrcode.addData(unescape(encodeURIComponent(options.text)));
+			} else {
+				qrcode.addData(options.text);
+			}
 			qrcode.make();
 
 			// create canvas element
