@@ -12,7 +12,9 @@
 			width		: 256,
 			height		: 256,
 			typeNumber	: -1,
-			correctLevel	: QRErrorCorrectLevel.H
+			correctLevel	: QRErrorCorrectLevel.H,
+                        background      : "#ffffff",
+                        foreground      : "#000000"
 		}, options);
 
 		var createCanvas	= function(){
@@ -34,7 +36,7 @@
 			// draw in the canvas
 			for( var row = 0; row < qrcode.getModuleCount(); row++ ){
 				for( var col = 0; col < qrcode.getModuleCount(); col++ ){
-					ctx.fillStyle = qrcode.isDark(row, col) ? "#000000" : "#ffffff";
+					ctx.fillStyle = qrcode.isDark(row, col) ? options.foreground : options.background;
 					ctx.fillRect( col*tileW, row*tileH, tileW, tileH );  
 				}	
 			}
@@ -55,7 +57,7 @@
 				.css("height", options.height+"px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
-				.css('background-color', "#ffffff");
+				.css('background-color', options.background);
 		  
 			// compute tileS percentage
 			var tileW	= options.width / qrcode.getModuleCount();
@@ -68,7 +70,7 @@
 				for(var col = 0; col < qrcode.getModuleCount(); col++ ){
 					$('<td></td>')
 						.css('width', tileW+"px")
-						.css('background-color', qrcode.isDark(row, col) ? "#000000" : "#ffffff")
+						.css('background-color', qrcode.isDark(row, col) ? options.foreground : options.background)
 						.appendTo($row);
 				}	
 			}
