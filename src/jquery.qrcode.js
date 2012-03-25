@@ -14,7 +14,7 @@
 			typeNumber	: -1,
 			correctLevel	: QRErrorCorrectLevel.H,
                         background      : "#ffffff",
-                        foreground      : "#000000"
+                        foreground      : "#000000",
 			unicode	        : true
 		}, options);
 
