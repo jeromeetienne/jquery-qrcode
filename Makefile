@@ -2,15 +2,20 @@ PROJECT_NAME=jquery-qrcode
 
 all:
 
+server:
+	python -m SimpleHTTPServer
 
 build: minify homepage_build
 
 minify:
-	echo -n 			> /tmp/jquery.qrcode.tmp.js
+	echo 	 			 > /tmp/jquery.qrcode.tmp.js
 	head -2 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
 	cat src/qrcode.js		>> /tmp/jquery.qrcode.tmp.js
 	tail -n +3 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
-	closurec --js /tmp/jquery.qrcode.tmp.js --js_output_file jquery.qrcode.min.js
+	curl --data-urlencode "js_code@/tmp/jquery.qrcode.tmp.js" 	\
+		-d "output_format=text&output_info=compiled_code&compilation_level=SIMPLE_OPTIMIZATIONS" \
+		http://closure-compiler.appspot.com/compile		\
+		> jquery.qrcode.min.js
 
 homepage_build:
 	pandoc -A ~/.pandoc.header.html -s README.md -o index.html
@@ -20,17 +25,8 @@ homepage_build:
 #		deploy								#
 #################################################################################
 
-deploy:	build deployGhPage
-
-deployGhPage:
-	rm -rf /tmp/$(PROJECT_NAME)GhPages
-	(cd /tmp && git clone git@github.com:jeromeetienne/$(PROJECT_NAME).git $(PROJECT_NAME)GhPages)
-	(cd /tmp/$(PROJECT_NAME)GhPages && git checkout gh-pages || true )
-	(cd /tmp/$(PROJECT_NAME)GhPages && git push origin :gh-pages || true )
-	(cd /tmp/$(PROJECT_NAME)GhPages && git symbolic-ref HEAD refs/heads/gh-pages)
-	(cd /tmp/$(PROJECT_NAME)GhPages && rm .git/index)
-	(cd /tmp/$(PROJECT_NAME)GhPages && git clean -fdx)
-	cp -a examples src Makefile *.* /tmp/$(PROJECT_NAME)GhPages
-	(cd /tmp/$(PROJECT_NAME)GhPages && git add . && git commit -a -m "Another deployement" || true )
-	(cd /tmp/$(PROJECT_NAME)GhPages && git add . && git push origin gh-pages)
-	#rm -rf /tmp/$(PROJECT_NAME)GhPages
+deploy:
+	# assume there is something to commit
+	# use "git diff --exit-code HEAD" to know if there is something to commit
+	# so two lines: one if no commit, one if something to commit 
+	git commit -a -m "New deploy" && git push -f origin HEAD:gh-pages && git reset HEAD~
