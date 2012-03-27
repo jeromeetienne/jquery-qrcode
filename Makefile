@@ -5,7 +5,7 @@ all:
 server:
 	python -m SimpleHTTPServer
 
-build: minify homepage_build
+build: minify
 
 minify:
 	echo 	 			 > /tmp/jquery.qrcode.tmp.js
@@ -25,7 +25,7 @@ homepage_build:
 #		deploy								#
 #################################################################################
 
-deploy:
+deploy: build
 	# assume there is something to commit
 	# use "git diff --exit-code HEAD" to know if there is something to commit
 	# so two lines: one if no commit, one if something to commit 
