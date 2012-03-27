@@ -9,11 +9,17 @@
 --><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
 <script type="text/javascript" src="../src/qrcode.js"></script>
 
-<div id="qrcode"></div>
+<p>Render in table</p>
+<div id="qrcodeTable"></div>
+<p>Render in canvas</p>
+<div id="qrcodeCanvas"></div>
 <script>
 	//jQuery('#qrcode').qrcode("this plugin is great");
-	jQuery('#qrcode').qrcode({
-		//render	: "table",
+	jQuery('#qrcodeTable').qrcode({
+		render	: "table",
+		text	: "http://jetienne.com"
+	});	
+	jQuery('#qrcodeCanvas').qrcode({
 		text	: "http://jetienne.com"
 	});	
 </script>
