@@ -79,10 +79,19 @@
 			// return just built canvas
 			return $table;
 		}
-  
+		
+		var createImage = function(){
+			return "<img src='"+createCanvas().toDataURL("image/png")+"' />";
+		}
+
 
 		return this.each(function(){
-			var element	= options.render == "canvas" ? createCanvas() : createTable();
+			var element;
+			switch(options.render) {
+				case "canvas": element = createCanvas(); break;
+				case "table":  element = createTable(); break;
+				case "image":  element = createImage(); break;
+			}
 			jQuery(element).appendTo(this);
 		});
 	};
