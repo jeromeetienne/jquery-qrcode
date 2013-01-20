@@ -8,9 +8,12 @@
 <!--<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
 --><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
 <script type="text/javascript" src="../src/qrcode.js"></script>
-
 <p>Render in table</p>
 <div id="qrcodeTable"></div>
+<p>Render with images (will print without changing browser settings)</p>
+<div id="qrcodeImages"></div>
+<p>Render with fixed images and IE 7 support</p>
+<div id="qrcodeImagesIE7"></div>
 <p>Render in canvas</p>
 <div id="qrcodeCanvas"></div>
 <script>
@@ -19,6 +22,16 @@
 		render	: "table",
 		text	: "http://jetienne.com"
 	});	
+        jQuery('#qrcodeImages').qrcode({
+                render  : "images",
+                
+	        text	: "http://jetienne.com"
+        });
+        jQuery('#qrcodeImagesIE7').qrcode({
+                render  : "images",
+                image   : "../src/blacksquare.png",
+	        text	: "http://jetienne.com"
+        });
 	jQuery('#qrcodeCanvas').qrcode({
 		text	: "http://jetienne.com"
 	});	
@@ -26,3 +39,4 @@
 
 </body>
 </html>
+
