@@ -52,6 +52,13 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
+
+			// width and height for the table should not squeeze or stretch the drawn QR code, high likelihood of invalid code
+			if(options.width % qrcode.getModuleCount() !== 0)
+				options.width = Math.floor(options.width / qrcode.getModuleCount()) * qrcode.getModuleCount();
+
+			if(options.height % qrcode.getModuleCount() !== 0)
+				options.height = Math.floor(options.height / qrcode.getModuleCount()) * qrcode.getModuleCount();
 			
 			// create table element
 			var $table	= $('<table></table>')
@@ -61,9 +68,10 @@
 				.css("border-collapse", "collapse")
 				.css('background-color', options.background);
 		  
-			// compute tileS percentage
-			var tileW	= options.width / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+			// compute tiles percentage
+			// these should NOT be decimal values as this can get really hairy
+			var tileW	= Math.floor(options.width / qrcode.getModuleCount());
+			var tileH	= Math.floor(options.height / qrcode.getModuleCount());
 
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
