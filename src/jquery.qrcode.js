@@ -52,11 +52,13 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
-			
+			var moduleCount = qrcode.getModuleCount();
+			var moduleWidth = parseInt(options.width / moduleCount);
+			var moduleHeight = parseInt(options.height / moduleCount);
 			// create table element
 			var $table	= $('<table></table>')
-				.css("width", options.width+"px")
-				.css("height", options.height+"px")
+				.css("width", moduleWidth * moduleCount + "px")
+				.css("height", moduleHeight * moduleCount + "px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
 				.css('background-color', options.background);
@@ -67,11 +69,11 @@
 
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
-				var $row = $('<tr></tr>').css('height', tileH+"px").appendTo($table);
+				var $row = $('<tr></tr>').css('height', moduleHeight + "px").appendTo($table);
 				
 				for(var col = 0; col < qrcode.getModuleCount(); col++ ){
 					$('<td></td>')
-						.css('width', tileW+"px")
+						.css('width', moduleWidth + "px")
 						.css('background-color', qrcode.isDark(row, col) ? options.foreground : options.background)
 						.appendTo($row);
 				}	
