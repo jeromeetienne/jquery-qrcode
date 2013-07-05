@@ -52,9 +52,12 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
+			
+			// compute tileS percentage
 			var moduleCount = qrcode.getModuleCount();
 			var moduleWidth = parseInt(options.width / moduleCount);
 			var moduleHeight = parseInt(options.height / moduleCount);
+			
 			// create table element
 			var $table	= $('<table></table>')
 				.css("width", moduleWidth * moduleCount + "px")
@@ -62,10 +65,7 @@
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
 				.css('background-color', options.background);
-		  
-			// compute tileS percentage
-			var tileW	= options.width / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+
 
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
