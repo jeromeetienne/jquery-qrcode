@@ -42,8 +42,14 @@
 					ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);  
 				}	
 			}
-			// return just built canvas
-			return canvas;
+			
+			//  make an image from the canvas
+			var img = document.createElement('img');
+			img.src = canvas.toDataURL('image/png');
+			img.width = options.width;
+			img.height = options.height;
+			// return just built img
+			return img;
 		}
 
 		// from Jon-Carlos Rivera (https://github.com/imbcmdth)
