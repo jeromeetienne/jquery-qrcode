@@ -1,25 +1,40 @@
-PROJECT_NAME=jquery-qrcode
+PROJECT_NAME ?= jquery-qrcode
+USER_NAME    ?= jeromeetienne
 
-all:
+ALL += jquery.qrcode.min.js
+ALL += index.html
+
+CLEAN += $(ALL)
+CLEAN += jquery.qrcode.js
+
+all: $(ALL)
+
+clean:
+	rm -f $(CLEAN)
 
 server:
+	which python || sudo apt-get install python
 	python -m SimpleHTTPServer
 
 build: minify
 
-minify:
-	echo 	 			 > /tmp/jquery.qrcode.tmp.js
-	head -2 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
-	cat src/qrcode.js		>> /tmp/jquery.qrcode.tmp.js
-	tail -n +3 src/jquery.qrcode.js	>> /tmp/jquery.qrcode.tmp.js
-	curl --data-urlencode "js_code@/tmp/jquery.qrcode.tmp.js" 	\
-		-d "output_format=text&output_info=compiled_code&compilation_level=SIMPLE_OPTIMIZATIONS" \
-		http://closure-compiler.appspot.com/compile		\
-		> jquery.qrcode.min.js
+minify: jquery.qrcode.min.js
 
-homepage_build:
-	pandoc -A ~/.pandoc.header.html -s README.md -o index.html
-	sed -i "s/github.com\/you/github.com\/jeromeetienne\/$(PROJECT_NAME)/g" index.html
+jquery.qrcode.js: src/jquery.qrcode.js src/qrcode.js
+	(head -2 src/jquery.qrcode.js; cat src/qrcode.js; tail -n +3 src/jquery.qrcode.js) > $@
+
+%.min.js: %.js
+	which closure-compiler || sudo apt-get install libclosure-compiler-java
+	closure-compiler --compilation_level SIMPLE_OPTIMIZATIONS $< > $@
+
+homepage_build: index.html
+
+~/.pandoc.header.html:
+	touch $@
+
+index.html: README.md ~/.pandoc.header.html
+	which pandoc || sudo apt-get install pandoc
+	pandoc -A ~/.pandoc.header.html -s README.md | sed "s|github.com/you|github.com/$(USER_NAME)/$(PROJECT_NAME)|g" > $@
 
 #################################################################################
 #		deploy								#
