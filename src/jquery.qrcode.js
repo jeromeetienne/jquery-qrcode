@@ -23,6 +23,9 @@
 			qrcode.addData(options.text);
 			qrcode.make();
 
+			options.width  = qrcode.getModuleCount();
+			options.height = qrcode.getModuleCount();
+
 			// create canvas element
 			var canvas	= document.createElement('canvas');
 			canvas.width	= options.width;
@@ -52,7 +55,10 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
-			
+
+			options.width  = qrcode.getModuleCount();
+			options.height = qrcode.getModuleCount();
+
 			// create table element
 			var $table	= $('<table></table>')
 				.css("width", options.width+"px")
