@@ -188,9 +188,9 @@
       var tileH = options.height / total
 
       var w = Math.ceil(tileW)
-      var h = Math.ceil(tileW)
+      var h = Math.ceil(tileH)
 
-      // fill the canvas with dark rectangles
+      fill the canvas with dark rectangles
       for( var row = 0; row < qrcode.moduleCount; row++ ) {
         for( var col = 0; col < qrcode.moduleCount; col++ ) {
           if( qrcode.isDark(row, col) ) {

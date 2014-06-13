@@ -15,7 +15,7 @@ Show, dont tell, here is a <a href='https://github.com/jeromeetienne/jquery-qrco
 
 Let me walk you thru it. First include it in your webpage with the usual script tag
     
-    <script type="text/javascript" src="jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="jquery.qrcode.js"></script>
 
 Then create a DOM element which gonna contains the generated qrcode image. Lets say
 a div
@@ -24,13 +24,13 @@ a div
 
 Then you add the *qrcode* in this container by
 
-    jquery('#qrcode').qrcode("this plugin is great");
+    $('#qrcode').qrcode("this plugin is great");
 
 This is it. see it <a href='examples/basic.html'>live</a>.
 
 You can set the height and width of the generated qrcode:
 
-    jquery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
+    $('#qrcode').qrcode({width: 64, height: 64, text: "size doesn't matter"});
 
 
 ## Conclusion
