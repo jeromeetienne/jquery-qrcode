@@ -190,7 +190,7 @@
       var w = Math.ceil(tileW)
       var h = Math.ceil(tileH)
 
-      fill the canvas with dark rectangles
+      // fill the canvas with dark rectangles
       for( var row = 0; row < qrcode.moduleCount; row++ ) {
         for( var col = 0; col < qrcode.moduleCount; col++ ) {
           if( qrcode.isDark(row, col) ) {
@@ -212,6 +212,14 @@
       qrcode.addData(options.text)
       qrcode.make()
 
+      var x = qrcode.moduleCount + options.border * 2
+
+      // Squeezing fix from Paul Marbach (@fastfrwrd)
+      if( options.width % x )
+        options.width = Math.floor(options.width / x) * x
+      if( options.height % x )
+        options.height = Math.floor(options.height / x) * x
+
       // create table element
       var $table = $('<table></table>')
             .css({
@@ -221,10 +229,10 @@
               "border-collapse": "collapse",
               "background-color": options.background
             })
-
-      var x = qrcode.moduleCount + options.border * 2
-      var tileW = options.width  / x + 'px'
-      var tileH = options.height / x + 'px'
+      // compute tiles percentage
+      // these should NOT be decimal values as this can get really hairy
+      var tileW = Math.floor(options.width  / x)
+      var tileH = Math.floor(options.height / x)
 
       // top border line(s) ///////////////////
       for( var t = 0; t < options.border; t++ )
