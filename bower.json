@@ -1,0 +1,26 @@
+{
+  "name": "jquery-qrcode",
+  "version": "1.0.0",
+  "homepage": "http://www.d-project.com/",
+  "authors": [
+    "jeromeetienne"
+  ],
+  "description": "It allow you to easily add qrcode to your webpages. It is standalone, less than 4k after minify+gzip, no image download",
+  "main": "jquery.qrcode.min.js",
+  "keywords": [
+    "QR",
+    "jQuery",
+    "standalone"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.9"
+  }
+}
