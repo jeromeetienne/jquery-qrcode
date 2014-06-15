@@ -6,7 +6,7 @@
     "jeromeetienne"
   ],
   "description": "It allow you to easily add qrcode to your webpages. It is standalone, less than 4k after minify+gzip, no image download",
-  "main": "src/qrcode.js",
+  "main": "jquery.qrcode.min.js",
   "keywords": [
     "QR",
     "jQuery",
@@ -19,5 +19,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "~1.9"
+  }
 }
