@@ -128,6 +128,7 @@
     // set default values
     // typeNumber < 1 for automatic calculation
     options = $.extend({}, {
+      append:       true,
       width:        256,
       height:       256,
       render:       "svg",
@@ -187,9 +188,6 @@
       var tileW = options.width  / total
       var tileH = options.height / total
 
-      var w = Math.ceil(tileW)
-      var h = Math.ceil(tileH)
-
       // fill the canvas with dark rectangles
       for( var row = 0; row < qrcode.moduleCount; row++ ) {
         for( var col = 0; col < qrcode.moduleCount; col++ ) {
@@ -197,6 +195,8 @@
             var s_col = col + options.border,
                 s_row = row + options.border
 
+            var w = (Math.ceil((col+1)*tileW) - Math.floor(col*tileW));
+            var h = (Math.ceil((row+1)*tileW) - Math.floor(row*tileW));
             ctx.fillRect(Math.round(s_col*tileW), Math.round(s_row*tileH), w, h)
           }
         }
@@ -292,7 +292,13 @@
           var element = createTable()
       }
 
-      $(element).appendTo(this)
+      if( options.append ) {
+        return this.each(function(){
+          $(element).appendTo(this)
+        })
+      } else {
+        return $(element)
+      }
     })
   }
 })( jQuery )
