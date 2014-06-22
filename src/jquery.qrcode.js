@@ -129,9 +129,9 @@
     // typeNumber < 1 for automatic calculation
     options = $.extend({}, {
       append:       true,
+      render:       "svg",
       width:        256,
       height:       256,
-      render:       "svg",
       typeNumber:   -1,
       correctLevel: QRErrorCorrectLevel.H,
       foreground:   "#000",
@@ -270,7 +270,8 @@
 
     // Returns an <img /> DOM element with a dataURI generated from createSVG
     var createImage = function() {
-      return $('<img />').attr('src', 'data:image/svg+xml;base64,'+btoa(createSVG()))
+      return $('<img style="width: '+options.width+'px; height: '+options.height+'px;" />')
+               .attr('src', 'data:image/svg+xml;base64,'+btoa(createSVG()))
     }
 
     return this.each(function(){
@@ -292,13 +293,10 @@
           var element = createTable()
       }
 
-      if( options.append ) {
-        return this.each(function(){
-          $(element).appendTo(this)
-        })
-      } else {
+      if( options.append )
+        $(this).append(element)
+      else
         return $(element)
-      }
     })
   }
 })( jQuery )
