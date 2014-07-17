@@ -146,7 +146,7 @@
 
       var x = qrcode.moduleCount + options.border * 2
 
-      var svg = (noXML) ? '<?xml version="1.0" encoding="utf-8"?>' : ''
+      var svg = (noXML) ? '' : '<?xml version="1.0" encoding="utf-8"?>'
           svg+= '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+options.width+'" height="'+options.height+'" viewBox="0 0 '+x+' '+x+'" preserveAspectRatio="xMinYMin meet">'
           svg+= '<rect width="100%" height="100%" fill="'+options.background+'" cx="0" cy="0" />'
           svg+= '<path fill="'+options.foreground+'" d="'
