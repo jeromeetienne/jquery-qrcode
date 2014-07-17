@@ -128,7 +128,6 @@
     // set default values
     // typeNumber < 1 for automatic calculation
     options = $.extend({}, {
-      append:       true,
       render:       "svg",
       width:        256,
       height:       256,
@@ -139,7 +138,7 @@
       border:       1
     }, options)
 
-    var createSVG = function(){
+    var createSVG = function(noXML){
       // generate the matrix
       var qrcode  = new QRCode(options.typeNumber, options.correctLevel)
       qrcode.addData(options.text)
@@ -147,10 +146,10 @@
 
       var x = qrcode.moduleCount + options.border * 2
 
-      var svg = '<?xml version="1.0" encoding="utf-8"?>'
-      svg += '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+options.width+'" height="'+options.height+'" viewBox="0 0 '+x+' '+x+'" preserveAspectRatio="xMinYMin meet">'
-      svg += '<rect width="100%" height="100%" fill="'+options.background+'" cx="0" cy="0" />'
-      svg += '<path fill="'+options.foreground+'" d="'
+      var svg = (noXML) ? '<?xml version="1.0" encoding="utf-8"?>' : ''
+          svg+= '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+options.width+'" height="'+options.height+'" viewBox="0 0 '+x+' '+x+'" preserveAspectRatio="xMinYMin meet">'
+          svg+= '<rect width="100%" height="100%" fill="'+options.background+'" cx="0" cy="0" />'
+          svg+= '<path fill="'+options.foreground+'" d="'
       matrix2path(qrcode.modules).forEach(function(subpath) {
         var sp = ''
         for( var k = 0; k < subpath.length; k++ ) {
@@ -274,30 +273,41 @@
                .attr('src', 'data:image/svg+xml;base64,'+btoa(createSVG()))
     }
 
-    return this.each(function(){
+    if( this.length ) { // $().qrcode()
+      return this.each(function(){
+        switch( options.render ) {
+          default:
+          case 'svg':
+            var element = createSVG()
+            break
+
+          case 'image':
+            var element = createImage()
+            break
+
+          case 'canvas':
+            var element = createCanvas()
+            break
+
+          case 'table':
+            var element = createTable()
+        }
+
+        $(this).append(element)
+      }) 
+    } else { // $.fn.qrcode()
       switch( options.render ) {
         default:
         case 'svg':
-          var element = createSVG()
-          break
+          return createSVG('noXMLtag')
 
         case 'image':
-          var element = createImage()
-          break
-
-        case 'canvas':
-          var element = createCanvas()
-          break
+          return createImage()
 
         case 'table':
-          var element = createTable()
+          return createTable()
       }
-
-      if( options.append )
-        $(this).append(element)
-      else
-        return $(element)
-    })
+    }
   }
 })( jQuery )
 
