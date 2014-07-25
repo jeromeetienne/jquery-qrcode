@@ -14,7 +14,8 @@
 			typeNumber	: -1,
 			correctLevel	: QRErrorCorrectLevel.H,
                         background      : "#ffffff",
-                        foreground      : "#000000"
+                        foreground      : "#000000",
+                        text			: this.attr("data-text")
 		}, options);
 
 		var createCanvas	= function(){
