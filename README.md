@@ -1,4 +1,4 @@
-# jquery.qrcode.js
+# jquery-qrcode
 
 <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a>
 is *jquery plugin for a pure browser qrcode generation*.
