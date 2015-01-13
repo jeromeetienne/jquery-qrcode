@@ -13,8 +13,8 @@
 			height		: 256,
 			typeNumber	: -1,
 			correctLevel	: QRErrorCorrectLevel.H,
-                        background      : "#ffffff",
-                        foreground      : "#000000"
+			background	: "#ffffff",
+			foreground	: "#000000"
 		}, options);
 
 		var createCanvas	= function(){
