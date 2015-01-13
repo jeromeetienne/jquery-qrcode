@@ -59,19 +59,25 @@
 				.css("height", options.height+"px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
-				.css('background-color', options.background);
+				.css('background-color', options.background)
+				.css('table-layout', 'fixed');
 		  
 			// compute tileS percentage
 			var tileW	= options.width / qrcode.getModuleCount();
 			var tileH	= options.height / qrcode.getModuleCount();
+			var w = [];
+			for(var col = 0; col < qrcode.getModuleCount(); col++ ){
+				w.push(Math.round(tileW * (col + 1)) - Math.round(tileW * col));
+			}
 
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
-				var $row = $('<tr></tr>').css('height', tileH+"px").appendTo($table);
+				var h = Math.round(tileH * (row + 1)) - Math.round(tileH * row);
+				var $row = $('<tr></tr>').css('height', h+"px").appendTo($table);
 				
 				for(var col = 0; col < qrcode.getModuleCount(); col++ ){
 					$('<td></td>')
-						.css('width', tileW+"px")
+						.css('width', w[col]+"px")
 						.css('background-color', qrcode.isDark(row, col) ? options.foreground : options.background)
 						.appendTo($row);
 				}	
