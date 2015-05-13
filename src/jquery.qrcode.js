@@ -22,23 +22,25 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
-
+			
+			//TAM - Determine tile pixel size from approximate overall Code size / module grid count. Floor to integer pixels.
+			var qrModuleCount = qrcode.getModuleCount();
+			var tileW	= Math.floor (options.width / qrModuleCount);
+			var tileH	= Math.floor (options.height / qrModuleCount);
+			
 			// create canvas element
 			var canvas	= document.createElement('canvas');
-			canvas.width	= options.width;
-			canvas.height	= options.height;
+			//TAM - Determine actual canvas size based on tile size * module grid count.
+			canvas.width = tileW * qrModuleCount;
+			canvas.width = tileH * qrModuleCount;
 			var ctx		= canvas.getContext('2d');
-
-			// compute tileW/tileH based on options.width/options.height
-			var tileW	= options.width  / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
 
 			// draw in the canvas
 			for( var row = 0; row < qrcode.getModuleCount(); row++ ){
 				for( var col = 0; col < qrcode.getModuleCount(); col++ ){
 					ctx.fillStyle = qrcode.isDark(row, col) ? options.foreground : options.background;
-					var w = (Math.ceil((col+1)*tileW) - Math.floor(col*tileW));
-					var h = (Math.ceil((row+1)*tileW) - Math.floor(row*tileW));
+					var w = tileW;
+					var h = tileW;
 					ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);  
 				}	
 			}
@@ -52,19 +54,23 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
+			//TAM - Determine tile pixel size from approximate overall Code size / module grid count. Floor to integer pixels.
+			var qrModuleCount = qrcode.getModuleCount();
+			var tileW	= Math.floor (options.width / qrModuleCount);
+			var tileH	= Math.floor (options.height / qrModuleCount);;
+
+			//TAM - Determine actual canvas size based on tile size * module grid count.
+			var tblW = tileW * qrcode.getModuleCount();
+			var tblH = tileH * qrcode.getModuleCount();
 			
 			// create table element
 			var $table	= $('<table></table>')
-				.css("width", options.width+"px")
-				.css("height", options.height+"px")
+				.css("width", tblW +"px")
+				.css("height", tblH+"px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
 				.css('background-color', options.background);
 		  
-			// compute tileS percentage
-			var tileW	= options.width / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
-
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
 				var $row = $('<tr></tr>').css('height', tileH+"px").appendTo($table);
