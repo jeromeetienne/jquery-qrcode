@@ -5,6 +5,13 @@
 			options	= { text: options };
 		}
 
+		if (window.applicationCache) {
+            options.render = 'canvas';
+        }
+        else {
+            options.render = 'table';
+        }
+
 		// set default values
 		// typeNumber < 1 for automatic calculation
 		options	= $.extend( {}, {
