@@ -9,7 +9,7 @@ It is based on a <a href='http://www.d-project.com/qrcode/index.html'>library</a
 which build qrcode in various language. <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> wraps
 it to make it easy to include in your own code.
 
-Show, dont tell, here is a <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html'>example</a>
+Show, don't tell, here is a <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html'>example</a>
 
 ## How to Use It
 
