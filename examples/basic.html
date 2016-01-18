@@ -4,25 +4,36 @@
 <title>basic example</title>
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<!--<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
---><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
-<script type="text/javascript" src="../src/qrcode.js"></script>
+<script src="../src/jquery.qrcode.js"></script>
+<script src="../src/qrcode.js"></script>
 
 <p>Render in table</p>
 <div id="qrcodeTable"></div>
 <p>Render in canvas</p>
 <div id="qrcodeCanvas"></div>
+<p>Render in SVG</p>
+<div id="qrcodeSVG"></div>
+<p>Render in image</p>
+<div id="qrcodeImage"></div>
 <script>
 	//jQuery('#qrcode').qrcode("this plugin is great");
 	jQuery('#qrcodeTable').qrcode({
 		render	: "table",
 		text	: "http://jetienne.com"
-	});	
+	});
 	jQuery('#qrcodeCanvas').qrcode({
+		render	: "canvas",
 		text	: "http://jetienne.com"
-	});	
+	});
+	jQuery('#qrcodeSVG').qrcode({
+		text	: "http://jetienne.com"
+	});
+	jQuery('#qrcodeImage').qrcode({
+		render	: "image",
+		text	: "http://jetienne.com"
+	});
 </script>
 
 </body>

@@ -26,7 +26,7 @@ function QR8bitByte(data) {
 QR8bitByte.prototype = {
 
 	getLength : function(buffer) {
-		return this.data.length;
+		return (this.data) ? this.data.length : 0;
 	},
 	
 	write : function(buffer) {
@@ -41,7 +41,7 @@ QR8bitByte.prototype = {
 // QRCode
 //---------------------------------------------------------------------
 
-function QRCode(typeNumber, errorCorrectLevel) {
+QRCode = function(typeNumber, errorCorrectLevel) {
 	this.typeNumber = typeNumber;
 	this.errorCorrectLevel = errorCorrectLevel;
 	this.modules = null;
@@ -490,7 +490,7 @@ var QRMode = {
 // QRErrorCorrectLevel
 //---------------------------------------------------------------------
  
-var QRErrorCorrectLevel = {
+QRErrorCorrectLevel = {
 	L : 1,
 	M : 0,
 	Q : 3,
@@ -1235,3 +1235,4 @@ QRBitBuffer.prototype = {
 		this.length++;
 	}
 };
+
