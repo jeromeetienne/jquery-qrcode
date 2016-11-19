@@ -68,7 +68,7 @@
 			computeOptions(options, qrcode);
 			
 			// create table element
-			var $table	= $('<table"></table>')
+			var $table	= $('<table></table>')
 				.css("-webkit-print-color-adjust", "exact")
 				.css("width", options.width+"px")
 				.css("height", options.height+"px")
