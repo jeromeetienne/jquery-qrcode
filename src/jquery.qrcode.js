@@ -17,11 +17,23 @@
                         foreground      : "#000000"
 		}, options);
 
+		function computeOptions(options, qrcode) {
+			var n = qrcode.getModuleCount();
+			if(options.pointWidth) {
+				options.width = n * options.pointWidth;
+			}
+			if(options.pointHeight) {
+				options.height = n * options.pointHeight;
+			}
+		}
+
 		var createCanvas	= function(){
 			// create the qrcode itself
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
+
+			computeOptions(options, qrcode);
 
 			// create canvas element
 			var canvas	= document.createElement('canvas');
@@ -44,7 +56,7 @@
 			}
 			// return just built canvas
 			return canvas;
-		}
+		};
 
 		// from Jon-Carlos Rivera (https://github.com/imbcmdth)
 		var createTable	= function(){
@@ -52,9 +64,12 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
+
+			computeOptions(options, qrcode);
 			
 			// create table element
 			var $table	= $('<table></table>')
+				.css("-webkit-print-color-adjust", "exact")
 				.css("width", options.width+"px")
 				.css("height", options.height+"px")
 				.css("border", "0px")
