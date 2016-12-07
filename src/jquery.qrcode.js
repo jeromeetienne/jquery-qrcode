@@ -59,11 +59,12 @@
 				.css("height", options.height+"px")
 				.css("border", "0px")
 				.css("border-collapse", "collapse")
-				.css('background-color', options.background);
+				.css('background-color', options.background)
+				.css('table-layout', "fixed");
 		  
 			// compute tileS percentage
-			var tileW	= options.width / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+			var tileW	= Math.round(options.width / qrcode.getModuleCount());
+			var tileH	= Math.round(options.height / qrcode.getModuleCount());
 
 			// draw in the table
 			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
@@ -72,6 +73,7 @@
 				for(var col = 0; col < qrcode.getModuleCount(); col++ ){
 					$('<td></td>')
 						.css('width', tileW+"px")
+						.css('padding', 0)
 						.css('background-color', qrcode.isDark(row, col) ? options.foreground : options.background)
 						.appendTo($row);
 				}	
