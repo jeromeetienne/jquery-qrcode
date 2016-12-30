@@ -24,13 +24,13 @@ a div
 
 Then you add the *qrcode* in this container by
 
-    jquery('#qrcode').qrcode("this plugin is great");
+    jQuery('#qrcode').qrcode("this plugin is great");
 
-This is it. see it <a href='examples/basic.html'>live</a>.
+This is it. see it <a href='http://jeromeetienne.github.com/jquery-qrcode/examples/basic.html'>live</a>.
 
 You can set the height and width of the generated qrcode:
 
-    jquery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
+    jQuery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
 
 
 ## Conclusion
