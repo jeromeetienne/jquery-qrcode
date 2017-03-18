@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Página demo</title>
+</head>
+<body>
+<p>
+	TODO fazer uma cliente puro para o gerador de qrcode que permita salvar a imagem
+</p>
+
+<div id="output"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
+<script>
+jQuery(function(){
+	jQuery('#output').qrcode("http://jetienne.com");
+})
+</script>
+
+</body>
+</html>
+

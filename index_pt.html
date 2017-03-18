@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="date" content="" />
+</head>
+<body>
+<div id="jquery.qrcode.js"
+><h1
+  >jquery.qrcode.js</h1
+  ><p
+  ><a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> é <em
+    >plugin jquery para a geração de qrcode puramente no browser</em
+    >. Ele permite a você facilmente adicionar qrcode a sua página web. Ele roda independente, fica menor que 4k após minify+gzip, sem imagens para download. Ele não depende de serviços externos que ficam indo e vindo, ou adiciona uma demora ao carregamento. É baseado em uma <a href='http://www.d-project.com/qrcode/index.html'>biblioteca</a> que cria qrcode em várias linguagens. <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> inclui isto para facilitar a inclusão no seu próprio código.</p
+  ><p
+  >Mostre, não fale, aqui está um <a href='examples/basic.html'>exemplo</a></p
+  ><div id="how-to-use-it"
+  ><h2
+    >Como usar</h2
+    ><p
+    >Deixe-me mostrar o caminho para você. Primeiramente inclua ele em sua página com a tag padrão</p
+    ><pre
+    ><code
+      >&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.qrcode.min.js&quot;&gt;&lt;/script&gt;
+</code
+      ></pre
+    ><p
+    >Então crie um elemento DOM que irá conter a imagem do qrcode gerada. Vamos usar uma div</p
+    ><pre
+    ><code
+      >&lt;div id=&quot;qrcode&quot;&gt;&lt;/div&gt;
+</code
+      ></pre
+    ><p
+    >Então você adiciona o <em
+      >qrcode</em
+      > neste container</p
+    ><pre
+    ><code
+      >jquery('#qrcode').qrcode(&quot;este plugin é demais&quot;);
+</code
+      ></pre
+    ><p
+    >É isto. veja em <a href='examples/basic.html'>ação</a>.</p
+    ></div
+  ><div id="conclusion"
+  ><h2
+    >Conclusão</h2
+    ><p
+    ><a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> está disponível no github <a href='https://github.com/jeromeetienne/jquery-qrcode'>aqui</a> sob uma <a href='https://github.com/jeromeetienne/jquery-qrcode.js/blob/master/MIT-LICENSE.txt'>licença MIT</a>. Se achar algum bug, modifique-as no github. Sinta-se livre para forkar, modificar e se divertir com isto :)</p
+    ></div
+  ></div
+>
+<style>
+body {
+    margin: auto;
+    padding-right: 1em;
+    padding-left: 1em;
+    max-width: 44em;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    font-family		: Verdana, sans-serif;
+    font-size		: 100%;
+    line-height		: 140%;
+    color		: #eee;
+    background-color	: #22252a;
+}
+pre {
+    border		: 1px dotted gray;
+    background-color	: #444a50;
+    color		: #1111111;
+    padding		: 0.5em;
+}
+code {
+	font-family	: monospace;
+}
+a {
+	text-decoration	: none;
+	color		: lightSteelBlue;
+}
+a:hover {
+	text-decoration	: underline;
+}
+h1, h2, h3, h4, h5 { font-family: verdana;
+                     font-weight: bold;
+                     border-bottom: 1px dotted #eee;
+                     color: lightSteelBlue; }
+h1 {
+	color		: #cd5;
+        font-size	: 130%;
+}
+h1:nth-child(1) {
+	font-size	: 300%;
+	text-align	: center;
+	height		: 1em;
+}
+h2 {
+        font-size	: 110%;
+}
+
+h3 {
+        font-size	: 95%;
+}
+
+h4 {
+        font-size	: 90%;
+        font-style	: italic;
+}
+
+h5 {
+        font-size	: 90%;
+        font-style	: italic;
+}
+
+h1.title {
+        font-size	: 200%;
+        font-weight	: bold;
+        padding-top	: 0.2em;
+        padding-bottom	: 0.2em;
+        text-align	: left;
+        border		: none;
+}
+
+dt code {
+        font-weight	: bold;
+}
+dd p {
+        margin-top	: 0;
+}
+img {
+/*	border-color	: white;
+	border-style	: solid;
+*/}
+
+#footer {
+        padding-top	: 1em;
+        font-size	: 70%;
+        color		: gray;
+        text-align	: center;
+}
+
+</style>
+<!-- follow me on twitter -->
+<a href="http://www.twitter.com/jerome_etienne">
+	<img style="position: absolute; bottom: 10px; right: 10px; border: 0;" src="http://twitter-badges.s3.amazonaws.com/follow_me-c.png" alt="Follow jerome_etienne on Twitter"/>
+</a>
+<!-- github ribbon -->
+<a href="https://github.com/jeromeetienne/jquery-qrcode"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+<!-- twitter share + facebook like -->
+<div style="position: absolute; top: 10px; right: 10px; border: 0;">
+
+	<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="jerome_etienne">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+</div>
+</body>
+</html>
+
