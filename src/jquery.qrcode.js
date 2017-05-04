@@ -8,7 +8,7 @@
 		// set default values
 		// typeNumber < 1 for automatic calculation
 		options	= $.extend( {}, {
-			render		: "canvas",
+			render		: "canvas",	// canvas, table, png
 			width		: 256,
 			height		: 256,
 			typeNumber	: -1,
@@ -82,8 +82,13 @@
   
 
 		return this.each(function(){
-			var element	= options.render == "canvas" ? createCanvas() : createTable();
-			$(element).appendTo(this);
+			var element	= (options.render == "canvas" || options.render == "png") == "canvas" ? createCanvas() : createTable();
+			if(options.render == "png"){
+				var png = element.toDataURL();
+				$('<img>').attr('src',png).appendTo(this);
+			} else {
+				$(element).appendTo(this);
+			}
 		});
 	};
 })( jQuery );
