@@ -11,6 +11,7 @@
 			render		: "canvas",
 			width		: 256,
 			height		: 256,
+			border		: 0,
 			typeNumber	: -1,
 			correctLevel	: QRErrorCorrectLevel.H,
                         background      : "#ffffff",
@@ -25,8 +26,14 @@
 
 			// create canvas element
 			var canvas	= document.createElement('canvas');
-			canvas.width	= options.width;
-			canvas.height	= options.height;
+			if (options.border !== 0) {
+				var border		= options.border * 2;
+				canvas.width	= options.width + border;
+				canvas.height	= options.height + border;
+			} else {
+				canvas.width	= options.width;
+				canvas.height	= options.height;
+			}
 			var ctx		= canvas.getContext('2d');
 
 			// compute tileW/tileH based on options.width/options.height
@@ -39,9 +46,21 @@
 					ctx.fillStyle = qrcode.isDark(row, col) ? options.foreground : options.background;
 					var w = (Math.ceil((col+1)*tileW) - Math.floor(col*tileW));
 					var h = (Math.ceil((row+1)*tileW) - Math.floor(row*tileW));
-					ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);  
+					if (options.border !== 0) {
+						ctx.fillRect(Math.round(col*tileW +(border/2)),Math.round(row*tileH +(border/2)), w, h);
+					} else {
+						ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);
+					}
 				}	
 			}
+
+			// Draw border
+			if (options.border !== 0) {
+				ctx.lineWidth   = border;
+				ctx.strokeStyle = options.background;
+				ctx.strokeRect(0, 0, options.width + border, options.height + border);
+			}
+
 			// return just built canvas
 			return canvas;
 		}
