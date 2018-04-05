@@ -15,14 +15,14 @@
 			height		: 256,
 			padding		: "auto",	// numeric or auto ("auto" adds 4 cells for padding around each)
 			typeNumber	: -1,
-			correctLevel	: QRErrorCorrectLevel.H,
+			correctLevel	: QRCode.CorrectLevel.H,
                         background      : "#ffffff",
                         foreground      : "#000000"
 		}, options);
 
 		var createCanvas	= function(){
 			// create the qrcode itself
-			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
+			var qrcode	= new QRCode.QRCodeModel(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
 
