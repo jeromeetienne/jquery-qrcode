@@ -1,32 +1,31 @@
 # jquery.qrcode.js
 
 <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a>
-is *jquery plugin for a pure browser qrcode generation*.
-It allow you to easily add qrcode to your webpages.
-It is standalone, less than 4k after minify+gzip, no image download.
-It doesnt rely on external services which go on and off, or add latency while loading.
+is a *jquery plugin for pure browser qrcode generation*.
+It allows you to easily add qrcodes to your webpages.
+It is standalone, less than 4kb after minify+gzip, and no image downloads.
+It doesn't rely on external services which go on and off, or add latency while loading.
 It is based on a <a href='http://www.d-project.com/qrcode/index.html'>library</a>
-which build qrcode in various language. <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> wraps
-it to make it easy to include in your own code.
+which builds qrcodes in various languages. <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> wraps it to make it easy to include in your own code.
 
-Show, don't tell, here is a <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html'>example</a>
+Show, don't tell, here is an <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html'>example</a>.
 
 ## How to Use It
 
-Let me walk you thru it. First include it in your webpage with the usual script tag
+Let me walk you through it. First include it in your webpage with the usual script tag
     
     <script type="text/javascript" src="jquery.qrcode.min.js"></script>
 
-Then create a DOM element which gonna contains the generated qrcode image. Lets say
-a div
+Then create a DOM element which will contain the generated qrcode image. Let's say
+a div:
 
     <div id="qrcode"></div>
 
-Then you add the *qrcode* in this container by
+Then you add the *qrcode* in this container with: 
 
     jquery('#qrcode').qrcode("this plugin is great");
 
-This is it. see it <a href='examples/basic.html'>live</a>.
+This is it. See it <a href='examples/basic.html'>live</a>.
 
 You can set the height and width of the generated qrcode:
 
