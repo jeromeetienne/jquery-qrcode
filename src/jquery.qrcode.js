@@ -38,7 +38,7 @@
 				for( var col = 0; col < qrcode.getModuleCount(); col++ ){
 					ctx.fillStyle = qrcode.isDark(row, col) ? options.foreground : options.background;
 					var w = (Math.ceil((col+1)*tileW) - Math.floor(col*tileW));
-					var h = (Math.ceil((row+1)*tileW) - Math.floor(row*tileW));
+					var h = (Math.ceil((row+1)*tileH) - Math.floor(row*tileH));
 					ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);  
 				}	
 			}
