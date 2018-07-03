@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>input example</title>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+
+<!--<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
+--><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
+<script type="text/javascript" src="../src/qrcode.js"></script>
+
+<form onSubmit="return render()">
+	<input id="input" name="input" style="height:32px;width:800px;" max-length=256 />
+</form>
+<p>Render in table</p>
+<div id="qrcodeTable"></div>
+<script>
+	$("input:text:visible:first").focus();
+	function render() {
+		$('#qrcodeTable').empty();
+		jQuery('#qrcodeTable').qrcode({
+			render	: "table",
+			text	: $('#input').val()
+		});	
+		return false;
+	}
+</script>
+
+</body>
+</html>
