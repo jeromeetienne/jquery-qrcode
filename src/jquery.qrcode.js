@@ -17,16 +17,18 @@
                         foreground      : "#000000"
 		}, options);
 
-		var createCanvas	= function(){
+		var createCanvas	= function(canvas){
 			// create the qrcode itself
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
 
 			// create canvas element
-			var canvas	= document.createElement('canvas');
-			canvas.width	= options.width;
-			canvas.height	= options.height;
+			if(!canvas){
+			  canvas = document.createElement('canvas');
+			  canvas.width = options.width;
+			  canvas.height = options.height;
+		  }
 			var ctx		= canvas.getContext('2d');
 
 			// compute tileW/tileH based on options.width/options.height
@@ -82,8 +84,13 @@
   
 
 		return this.each(function(){
-			var element	= options.render == "canvas" ? createCanvas() : createTable();
-			$(element).appendTo(this);
+		  if(!this instanceof HTMLCanvasElement){
+  			var element	= options.render == "canvas" ? createCanvas() : createTable();
+  			$(element).appendTo(this);
+			}else{
+			  // draw the QR code onto an existing canvas element
+			  createCanvas(this)
+			}
 		});
 	};
 })( jQuery );
