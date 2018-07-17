@@ -17,9 +17,32 @@
                         foreground      : "#000000"
 		}, options);
 
+		var normalizeErrorCorrectLevel = function(correctLevel) {
+			switch((correctLevel + "").toUpperCase()) {
+			case "L":
+			case QRErrorCorrectLevel.L + "":
+				return QRErrorCorrectLevel.L;
+
+			case "M":
+			case QRErrorCorrectLevel.M + "":
+				return QRErrorCorrectLevel.M;
+
+			case "Q":
+			case QRErrorCorrectLevel.Q + "":
+				return QRErrorCorrectLevel.Q;
+
+			case "H":
+			case QRErrorCorrectLevel.H + "":
+				return QRErrorCorrectLevel.H;
+
+			default:
+				throw new Error("Invalid correct level " + correctLevel);
+			}
+		};
+
 		var createCanvas	= function(){
 			// create the qrcode itself
-			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
+			var qrcode	= new QRCode(options.typeNumber, normalizeErrorCorrectLevel(options.correctLevel));
 			qrcode.addData(options.text);
 			qrcode.make();
 
@@ -49,7 +72,7 @@
 		// from Jon-Carlos Rivera (https://github.com/imbcmdth)
 		var createTable	= function(){
 			// create the qrcode itself
-			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
+			var qrcode	= new QRCode(options.typeNumber, normalizeErrorCorrectLevel(options.correctLevel));
 			qrcode.addData(options.text);
 			qrcode.make();
 			
