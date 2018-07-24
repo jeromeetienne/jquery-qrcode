@@ -11,6 +11,7 @@
 			render		: "canvas",
 			width		: 256,
 			height		: 256,
+			margin		: 4,
 			typeNumber	: -1,
 			correctLevel	: QRErrorCorrectLevel.H,
                         background      : "#ffffff",
@@ -30,13 +31,22 @@
 			var ctx		= canvas.getContext('2d');
 
 			// compute tileW/tileH based on options.width/options.height
-			var tileW	= options.width  / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+			var margin	= options.margin;
+			var tileW	= options.width  / (qrcode.getModuleCount() + 2*options.margin);
+			var tileH	= options.height / (qrcode.getModuleCount() + 2*options.margin);
+
+			var isDark = function(x, y) {
+				x -= margin; y -= margin;
+				if(x < 0 || x >= qrcode.getModuleCount() || y < 0 || y >= qrcode.getModuleCount())
+				    return false;
+				else
+				    return qrcode.isDark(x, y);
+			}
 
 			// draw in the canvas
-			for( var row = 0; row < qrcode.getModuleCount(); row++ ){
-				for( var col = 0; col < qrcode.getModuleCount(); col++ ){
-					ctx.fillStyle = qrcode.isDark(row, col) ? options.foreground : options.background;
+			for( var row = 0; row < qrcode.getModuleCount()+2*margin; row++ ){
+				for( var col = 0; col < qrcode.getModuleCount()+2*margin; col++ ){
+					ctx.fillStyle = isDark(row, col) ? options.foreground : options.background;
 					var w = (Math.ceil((col+1)*tileW) - Math.floor(col*tileW));
 					var h = (Math.ceil((row+1)*tileH) - Math.floor(row*tileH));
 					ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);  
@@ -62,17 +72,26 @@
 				.css('background-color', options.background);
 		  
 			// compute tileS percentage
-			var tileW	= options.width / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+			var margin	= options.margin;
+			var tileW	= options.width / (qrcode.getModuleCount() + 2*margin);
+			var tileH	= options.height / (qrcode.getModuleCount() + 2*margin);
+
+			var isDark = function(x, y) {
+				x -= margin; y -= margin;
+				if(x < 0 || x >= qrcode.getModuleCount() || y < 0 || y >= qrcode.getModuleCount())
+				    return false;
+				else
+				    return qrcode.isDark(x, y);
+			}
 
 			// draw in the table
-			for(var row = 0; row < qrcode.getModuleCount(); row++ ){
+			for(var row = 0; row < (qrcode.getModuleCount() + 2*margin); row++ ){
 				var $row = $('<tr></tr>').css('height', tileH+"px").appendTo($table);
 				
-				for(var col = 0; col < qrcode.getModuleCount(); col++ ){
+				for(var col = 0; col < (qrcode.getModuleCount() + 2*margin); col++ ){
 					$('<td></td>')
 						.css('width', tileW+"px")
-						.css('background-color', qrcode.isDark(row, col) ? options.foreground : options.background)
+						.css('background-color', isDark(row, col) ? options.foreground : options.background)
 						.appendTo($row);
 				}	
 			}
