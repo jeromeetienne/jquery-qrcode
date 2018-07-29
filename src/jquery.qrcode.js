@@ -9,6 +9,7 @@
 		// typeNumber < 1 for automatic calculation
 		options	= $.extend( {}, {
 			render		: "canvas",
+			pixelsPerTile	: 2,
 			width		: 256,
 			height		: 256,
 			typeNumber	: -1,
@@ -22,6 +23,9 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
+
+			options.width  = qrcode.getModuleCount() * options.pixelsPerTile;
+			options.height = qrcode.getModuleCount() * options.pixelsPerTile;
 
 			// create canvas element
 			var canvas	= document.createElement('canvas');
@@ -52,7 +56,10 @@
 			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
 			qrcode.addData(options.text);
 			qrcode.make();
-			
+
+			options.width  = qrcode.getModuleCount() * options.pixelsPerTile;
+			options.height = qrcode.getModuleCount() * options.pixelsPerTile;
+
 			// create table element
 			var $table	= $('<table></table>')
 				.css("width", options.width+"px")
