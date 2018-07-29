@@ -21,18 +21,54 @@
 function QR8bitByte(data) {
 	this.mode = QRMode.MODE_8BIT_BYTE;
 	this.data = data;
+	var count = 0;
+	for (var i = 0; i < this.data.length; i++) {
+		var c = this.data.charCodeAt(i);
+		if (c < 0x80) {
+			count++;
+		}
+		else if (c < 0x800) {
+			count+=2;
+		}
+		else if (c < 0x10000) {
+			count+=3;
+		}
+		else if (c < 0x200000) {
+			count+=4;
+		}
+	}
+	this.length = count;
 }
 
 QR8bitByte.prototype = {
 
 	getLength : function(buffer) {
-		return this.data.length;
+		return this.length;
 	},
 	
 	write : function(buffer) {
 		for (var i = 0; i < this.data.length; i++) {
 			// not JIS ...
-			buffer.put(this.data.charCodeAt(i), 8);
+			//buffer.put(this.data.charCodeAt(i), 8);
+			var c = this.data.charCodeAt(i);
+			if (c < 0x80) {
+				buffer.put (c, 8);
+			}
+			else if (c < 0x800) {
+				buffer.put (0xC0 | c>>6, 8);
+				buffer.put (0x80 | c & 0x3F, 8);
+			}
+			else if (c < 0x10000) {
+				buffer.put (0xE0 | c>>12, 8);
+				buffer.put (0x80 | c>>6 & 0x3F, 8);
+				buffer.put (0x80 | c & 0x3F, 8);
+			}
+			else if (c < 0x200000) {
+				buffer.put (0xF0 | c>>18, 8);
+				buffer.put (0x80 | c>>12 & 0x3F, 8);
+				buffer.put (0x80 | c>>6 & 0x3F, 8);
+				buffer.put (0x80 | c & 0x3F, 8);
+			}
 		}
 	}
 };
