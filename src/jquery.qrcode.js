@@ -12,7 +12,7 @@
 			width		: 256,
 			height		: 256,
 			typeNumber	: -1,
-			correctLevel	: QRErrorCorrectLevel.H,
+			correctLevel	: QRErrorCorrectLevel.L,
                         background      : "#ffffff",
                         foreground      : "#000000"
 		}, options);
@@ -81,8 +81,16 @@
 		}
   
 
-		return this.each(function(){
-			var element	= options.render == "canvas" ? createCanvas() : createTable();
+		return this.each(function() {
+			var canvasSupported = !!window.HTMLCanvasElement;
+			var element;
+			if (canvasSupported && options.render == "canvas") {
+				element = createCanvas();
+			}
+			else {
+				element = createTable();
+			}
+
 			$(element).appendTo(this);
 		});
 	};
