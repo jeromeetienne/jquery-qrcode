@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Demo page</title>
-
+	<title>Demo page</title>
 </head>
 <body>
-<p>
-	TODO make a nice looking pure client qrcode generator
-	even allow download of the image
-</p>
 
+<p>Enter your data here and click 'generate' to create a QR Code</p>
+<p>No data will be sent to a server; everything is handled in JavaScript.</p>
+
+<form onsubmit="return refresh()">
+	<input type="text" id="text" value="http://jetienne.com" />
+	<button type="submit">Generate</button>
+</form>
 <div id="output"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="../jquery.qrcode.min.js"></script>
 <script>
-jQuery(function(){
-	jQuery('#output').qrcode("http://jetienne.com");
-})
+function refresh() {
+	jQuery('#output').empty().qrcode(jQuery("#text").val());
+	return false;
+}
+refresh();
 </script>
 
 </body>
