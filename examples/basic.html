@@ -2,6 +2,12 @@
 <html>
 <head>
 <title>basic example</title>
+<style>
+	#container div {
+		width: 300px;
+		height: 300px;
+	}
+</style>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -10,14 +16,15 @@
 --><script type="text/javascript" src="../src/jquery.qrcode.js"></script>
 <script type="text/javascript" src="../src/qrcode.js"></script>
 
-<p>Render in table</p>
-<div id="qrcodeTable"></div>
-<p>Render in canvas</p>
-<div id="qrcodeCanvas"></div>
+<div id="container">
+	<p>Render in table</p>
+	<div id="qrcodeTable" data-correctLevel="E" data-size="10x10" data-render="table"></div>
+	<p>Render in canvas</p>
+	<div id="qrcodeCanvas" data-correctLevel="E"></div>
+</div>
 <script>
 	//jQuery('#qrcode').qrcode("this plugin is great");
 	jQuery('#qrcodeTable').qrcode({
-		render	: "table",
 		text	: "http://jetienne.com"
 	});	
 	jQuery('#qrcodeCanvas').qrcode({

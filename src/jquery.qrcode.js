@@ -4,25 +4,44 @@
 		if( typeof options === 'string' ){
 			options	= { text: options };
 		}
-
+		
+		if($(this).attr("data-render"))
+			options	= $.extend( {}, { render : $(this).attr("data-render") }, options);
+		if($(this).attr("data-size")) {
+			var size = $(this).attr("data-size").split('x');
+			options	= $.extend( {}, {
+				width : size[0],
+				height : size[1]
+			}, options);
+		}
+		if($(this).attr('data-typeNumber'))
+			options	= $.extend( {}, { render : $(this).attr("data-typeNumber") }, options);
+		if($(this).attr('data-correctLevel'))
+			options	= $.extend( {}, { render : $(this).attr("data-correctLevel") }, options);
+		if($(this).attr('data-background'))
+			options	= $.extend( {}, { render : $(this).attr("data-background") }, options);
+		if($(this).attr('data-foreground'))
+			options	= $.extend( {}, { render : $(this).attr("data-foreground") }, options);
+		
 		// set default values
 		// typeNumber < 1 for automatic calculation
 		options	= $.extend( {}, {
 			render		: "canvas",
-			width		: 256,
-			height		: 256,
+			width		: $(this).innerWidth(),
+			height		: $(this).innerHeight(),
 			typeNumber	: -1,
-			correctLevel	: QRErrorCorrectLevel.H,
-                        background      : "#ffffff",
-                        foreground      : "#000000"
+			correctLevel	: "H",
+			background      : "#ffffff",
+			foreground      : "#000000"
 		}, options);
 
+	
+		// create the qrcode itself
+		var qrcode	= new QRCode(options.typeNumber, QRErrorCorrectLevel[options.correctLevel]);
+		qrcode.addData(options.text);
+		qrcode.make();
+			
 		var createCanvas	= function(){
-			// create the qrcode itself
-			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
-			qrcode.addData(options.text);
-			qrcode.make();
-
 			// create canvas element
 			var canvas	= document.createElement('canvas');
 			canvas.width	= options.width;
@@ -48,11 +67,6 @@
 
 		// from Jon-Carlos Rivera (https://github.com/imbcmdth)
 		var createTable	= function(){
-			// create the qrcode itself
-			var qrcode	= new QRCode(options.typeNumber, options.correctLevel);
-			qrcode.addData(options.text);
-			qrcode.make();
-			
 			// create table element
 			var $table	= $('<table></table>')
 				.css("width", options.width+"px")
