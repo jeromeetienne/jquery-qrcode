@@ -12,6 +12,7 @@
 			width		: 256,
 			height		: 256,
 			typeNumber	: -1,
+			padding		: 0,
 			correctLevel	: QRErrorCorrectLevel.H,
                         background      : "#ffffff",
                         foreground      : "#000000"
@@ -28,10 +29,12 @@
 			canvas.width	= options.width;
 			canvas.height	= options.height;
 			var ctx		= canvas.getContext('2d');
+			ctx.fillStyle = options.background;
+			ctx.fillRect(0, 0, options.width, options.height);
 
 			// compute tileW/tileH based on options.width/options.height
-			var tileW	= options.width  / qrcode.getModuleCount();
-			var tileH	= options.height / qrcode.getModuleCount();
+			var tileW	= (options.width - 2 * options.padding)  / qrcode.getModuleCount();
+			var tileH	= (options.height - 2 * options.padding) / qrcode.getModuleCount();
 
 			// draw in the canvas
 			for( var row = 0; row < qrcode.getModuleCount(); row++ ){
@@ -39,7 +42,7 @@
 					ctx.fillStyle = qrcode.isDark(row, col) ? options.foreground : options.background;
 					var w = (Math.ceil((col+1)*tileW) - Math.floor(col*tileW));
 					var h = (Math.ceil((row+1)*tileH) - Math.floor(row*tileH));
-					ctx.fillRect(Math.round(col*tileW),Math.round(row*tileH), w, h);  
+					ctx.fillRect(Math.round(col*tileW) + options.padding, Math.round(row*tileH) + options.padding, w, h);  
 				}	
 			}
 			// return just built canvas
