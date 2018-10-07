@@ -34,8 +34,6 @@
 			var tileH	= options.height / (qrcode.getModuleCount() + 8);
 
 			// draw in the canvas
-			ctx2.fillStyle = "#ffffff";
-			ctx2.fillRect(0, 0, options.width, options.height);
 			for (var row = 0; row < (qrcode.getModuleCount() + 8); row++) {
 				for (var col = 0; col < (qrcode.getModuleCount() + 8); col++) {
 					if ((row < 4) || (row >= (qrcode.getModuleCount() + 4))) {
