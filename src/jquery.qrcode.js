@@ -30,24 +30,24 @@
 			var ctx		= canvas.getContext('2d');
 
 			// compute tileW/tileH based on options.width/options.height
-            var tileW = options.width / (qrcode.getModuleCount() + 8);
-            var tileH = options.height / (qrcode.getModuleCount() + 8);
+			var tileW	= options.width / (qrcode.getModuleCount() + 8);
+			var tileH	= options.height / (qrcode.getModuleCount() + 8);
 
 			// draw in the canvas
-            ctx2.fillStyle = "#ffffff";
-            ctx2.fillRect(0, 0, options.width, options.height);
-            for (var row = 0; row < (qrcode.getModuleCount() + 8); row++) {
-                for (var col = 0; col < (qrcode.getModuleCount() + 8); col++) {
-                    if ((row < 4) || (row >= (qrcode.getModuleCount() + 4))) {
-                        ctx.fillStyle = options.background;
-                    } else if ((col < 4) || (col >= (qrcode.getModuleCount() + 4))) {
-                        ctx.fillStyle = options.background;
-                    } else {
-                        ctx.fillStyle = qrcode.isDark(row - 4, col - 4) ? options.foreground : options.background;
-                    }
-                    var w = (Math.ceil((col + 1) * tileW) - Math.floor(col * tileW));
-                    var h = (Math.ceil((row + 1) * tileH) - Math.floor(row * tileH));
-                    ctx.fillRect(Math.round(col * tileW), Math.round(row * tileH), w, h);
+			ctx2.fillStyle = "#ffffff";
+			ctx2.fillRect(0, 0, options.width, options.height);
+			for (var row = 0; row < (qrcode.getModuleCount() + 8); row++) {
+				for (var col = 0; col < (qrcode.getModuleCount() + 8); col++) {
+					if ((row < 4) || (row >= (qrcode.getModuleCount() + 4))) {
+						ctx.fillStyle = options.background;
+					} else if ((col < 4) || (col >= (qrcode.getModuleCount() + 4))) {
+						ctx.fillStyle = options.background;
+					} else {
+						ctx.fillStyle = qrcode.isDark(row - 4, col - 4) ? options.foreground : options.background;
+					}
+					var w = (Math.ceil((col + 1) * tileW) - Math.floor(col * tileW));
+					var h = (Math.ceil((row + 1) * tileH) - Math.floor(row * tileH));
+					ctx.fillRect(Math.round(col * tileW), Math.round(row * tileH), w, h);
 				}	
 			}
 			// return just built canvas
