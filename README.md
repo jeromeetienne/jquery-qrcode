@@ -17,7 +17,7 @@ Second, create a container to hold the generated QR code:
 
     <div id="qrcode"></div>
 
-To finish, add the QR code in the container using:
+To finish, add the QR code to the container using:
 
     jquery('#qrcode').qrcode("this plugin is great");
 
@@ -26,7 +26,6 @@ See a finished example <a href='examples/basic.html'>here</a>.
 You can also set the width and height of the generated QR code:
 
     jquery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
-
 
 ## Support
 <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> is available on GitHub
