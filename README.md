@@ -1,41 +1,35 @@
 # jquery.qrcode.js
 
-<a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a>
-is *jquery plugin for a pure browser qrcode generation*.
-It allow you to easily add qrcode to your webpages.
-It is standalone, less than 4k after minify+gzip, no image download.
-It doesnt rely on external services which go on and off, or add latency while loading.
-It is based on a <a href='http://www.d-project.com/qrcode/index.html'>library</a>
-which build qrcode in various language. <a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> wraps
-it to make it easy to include in your own code.
+<a href='https://jeromeetienne.github.io/jquery-qrcode/'>jquery.qrcode.js</a>
+is a standalone jQuery plugin that generates QR codes.
+It lets you easily add QR codes to your website.
+It doesn't rely on external services which can go offline or add loading time. Also, it weighs less than 4 KB after minify + gzip, and it doesn't download any images.
 
-Show, don't tell, here is a <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/examples/basic.html'>example</a>
+This library is based on <a href='https://kazuhikoarase.github.io/qrcode-generator/'>qrcode-generator</a>, a library that generates QR codes in various programming languages. jquery.qrcode.js acts as a wrapper for this library, letting you easily include it in your own code.
 
-## How to Use It
+## Example
 
-Let me walk you thru it. First include it in your webpage with the usual script tag
+First, include jquery.qrcode.js in your website with a script tag:
     
     <script type="text/javascript" src="jquery.qrcode.min.js"></script>
 
-Then create a DOM element which gonna contains the generated qrcode image. Lets say
-a div
+Second, create a container to hold the generated QR code:
 
     <div id="qrcode"></div>
 
-Then you add the *qrcode* in this container by
+To finish, add the QR code to the container using:
 
     jquery('#qrcode').qrcode("this plugin is great");
 
-This is it. see it <a href='examples/basic.html'>live</a>.
+See a finished example <a href='examples/basic.html'>here</a>.
 
-You can set the height and width of the generated qrcode:
+You can also set the width and height of the generated QR code:
 
     jquery('#qrcode').qrcode({width: 64,height: 64,text: "size doesn't matter"});
 
-
-## Conclusion
-<a href='http://jeromeetienne.github.com/jquery-qrcode'>jquery.qrcode.js</a> is available on github
-<a href='https://github.com/jeromeetienne/jquery-qrcode'>here</a>
-under <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/MIT-LICENSE.txt'>MIT license</a>.
-If you hit bugs, fill issues on github.
-Feel free to fork, modify and have fun with it :)
+## Support
+<a href='https://jeromeetienne.github.io/jquery-qrcode/'>jquery.qrcode.js</a> is available on
+<a href='https://github.com/jeromeetienne/jquery-qrcode'>GitHub</a>
+under the <a href='https://github.com/jeromeetienne/jquery-qrcode/blob/master/MIT-LICENSE.txt'>MIT license</a>.
+If you find bugs, please open issues on GitHub.
+Feel free to fork, modify, and have fun with the library :)
